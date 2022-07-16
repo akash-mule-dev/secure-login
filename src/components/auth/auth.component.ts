@@ -27,9 +27,9 @@ export class AuthComponent implements OnInit {
     this.FirebaseService.initFirebase()
     //throw new Error('Method not implemented.');
   }
-
-  public onSubmit(values:Object):void {
+  public onSubmit(values:{email:string,password:string}):void {
     this.submitted = true;
+    this.FirebaseService.signIn(values.email,values.password)
 
   }
 

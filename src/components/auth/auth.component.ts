@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
     this.password = this.form.controls['password'];
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   public onSubmit(values:Object):void {

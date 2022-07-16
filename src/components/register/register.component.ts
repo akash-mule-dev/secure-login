@@ -11,5 +11,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  nameChanged(nameModel:any){
+    console.log(nameModel)
+  }
+  onClickSubmit(data:any){
+    console.log(data)
+  }
 
 }

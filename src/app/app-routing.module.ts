@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path:"login",
     loadChildren:()=>import('src/components/auth/auth.module').then(m=>m.AuthModule)
+  },
+  {
+    path:"signup",
+    loadChildren:()=>import('src/components/register/register.module').then(m=>m.RegisterModule)
   }
   
 ];

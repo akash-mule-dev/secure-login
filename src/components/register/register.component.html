@@ -1,1 +1,92 @@
-<p>register works!</p>
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">Register</div>
+            <div class="panel-body">
+                <form  #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)">
+                    <!-- (ngSubmit)="onSubmit(form.value)" [formGroup]="form" -->
+                    <fieldset>
+                        <div class="form-group">
+                            <input name="name" ngModel #nameModel=ngModel 
+                                class="form-control" required maxlength="10" minlength="3" placeholder="First Name"
+                                type="text" autofocus="">
+                            <div *ngIf="!nameModel.valid && nameModel.touched" class="alert alert-danger">
+                                <div *ngIf="nameModel.errors">
+                                    Mininum length 3 is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="lastName" ngModel #lastNameModel=ngModel maxlength="10"
+                                minlength="3"  placeholder="Last Name" type="text"
+                                autofocus="" required>
+                            <div *ngIf="!lastNameModel.valid && lastNameModel.touched" class="alert alert-danger">
+                                <div *ngIf="lastNameModel.errors">
+                                    Mininum length 3 is required
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <input name="email" ngModel #email=ngModel (change)="nameChanged(email)" required
+                                maxlength="25" minlength="7" class="form-control" placeholder="E-mail" type="email"
+                                autofocus="">
+                            <div *ngIf="!email.valid && email.dirty" class="alert alert-danger">
+                                <div *ngIf="email.errors">
+                                    Mininum length 3 is required
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <input type="email" name="email" ngModel placeholder="E-mail" #emailWithPattern="ngModel"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                (change)="nameChanged(emailWithPattern)" class="form-control" required>
+                            <div *ngIf="!emailWithPattern.valid && emailWithPattern.touched" class="alert alert-danger">
+                                <div *ngIf="emailWithPattern.errors?.['required']">
+                                    Email is a required field!
+                                </div>
+                                <div *ngIf="emailWithPattern.errors?.['pattern']">
+                                    This is not a valid Email!!!
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <input class="form-control" placeholder="Password" type="password" value="">
+                            <!-- [formControl]="password" -->
+
+                        <!--  </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Confirm Password" type="password" value="">
+                            <!-- [formControl]="cpassword" -->
+                        <!--  </div> -->
+
+                        <div class="form-group">
+                            <input type="password" ngModel name="password" placeholder="Password" class="form-control"
+                                required #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                            <div *ngIf="password.invalid && (password.touched)" class="alert alert-danger">
+                                <div *ngIf="password.errors?.['required']"> Password is required. </div>
+                                <div *ngIf="password.errors?.['pattern']"> Must contain at least one number and one
+                                    uppercase and lowercase letter,
+                                    and at least 8 or more characters.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" ngModel name="confirmpassword" placeholder="Confirm Password"
+                                class="form-control" required #confirmpassword="ngModel"
+                                pattern="{{ password.value }}" />
+                            <div *ngIf=" confirmpassword.invalid && ( confirmpassword.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="confirmpassword.errors?.['required']"> Confirm password is required. </div>
+                                <div *ngIf="confirmpassword.errors?.['pattern']"> Password & Confirm Password does not
+                                    match.</div>
+                            </div>
+                        </div>
+                        <button type="submit" value = "submit"
+                            [disabled]="!(confirmpassword.valid  && password.valid && emailWithPattern.valid )"
+                            class="btn btn-primary" > Register</button><!-- [disabled]="!form.valid" -->
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.col-->
+</div><!-- /.row -->

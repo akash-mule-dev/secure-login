@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FirebaseService } from 'src/services/firebase/firebase.service'
 
 @Component({
   selector: 'auth',
@@ -14,7 +15,7 @@ export class AuthComponent implements OnInit {
   public password:AbstractControl;
   public submitted:boolean = false;
 
-  constructor(private fb:FormBuilder,private router:Router, ) {
+  constructor(private fb:FormBuilder,private router:Router,  private FirebaseService : FirebaseService) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/)])]
@@ -23,7 +24,7 @@ export class AuthComponent implements OnInit {
     this.password = this.form.controls['password'];
   }
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
+    //throw new Error('Method not implemented.');
   }
 
   public onSubmit(values:Object):void {

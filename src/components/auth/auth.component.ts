@@ -24,6 +24,7 @@ export class AuthComponent implements OnInit {
     this.password = this.form.controls['password'];
   }
   ngOnInit(): void {
+    this.FirebaseService.initFirebase()
     //throw new Error('Method not implemented.');
   }
 

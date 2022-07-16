@@ -20,3 +20,4 @@ let route : Routes = [
   exports:[LandingComponent]
 })
 export class LandingModule { }
+ 
